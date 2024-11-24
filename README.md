@@ -62,6 +62,24 @@ VALUES
 
 SELECT * FROM payments
 
+4. CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    order_status VARCHAR(50) DEFAULT 'Pending',
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+INSERT INTO orders (customer_id, total_amount, order_status)
+VALUES
+    (1, 99.95, 'Pending'),
+    (2, 49.99, 'Shipped'),
+    (3, 120.50, 'Delivered'),
+    (4, 75.00, 'Pending'),
+    (5, 150.20, 'Shipped');
+
+SELECT * FROM orders
 
 
 
