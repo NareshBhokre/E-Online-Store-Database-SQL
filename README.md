@@ -42,7 +42,26 @@ VALUES (1, 'Wireless Mouse', 'Ergonomic wireless mouse', 25.99, 'Electronics', 1
 
 SELECT * FROM products;
 
-3. 
+3. CREATE TABLE payments (
+    payment_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    amount DECIMAL(10, 2) NOT NULL,
+    payment_method VARCHAR(50) NOT NULL,
+    payment_status VARCHAR(50) DEFAULT 'Pending',
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+INSERT INTO payments (order_id, amount, payment_method, payment_status)
+VALUES
+    (1, 99.95, 'Credit Card', 'Completed'),
+    (2, 49.99, 'PayPal', 'Completed'),
+    (3, 120.50, 'Bank Transfer', 'Completed'),
+    (4, 75.00, 'Credit Card', 'Pending'),
+    (5, 150.20, 'PayPal', 'Completed');
+
+SELECT * FROM payments
+
 
 
 
