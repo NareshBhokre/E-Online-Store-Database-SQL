@@ -1,6 +1,7 @@
 # E-Online-Store-Database Task-2
 # Problem Statement: 
 Develop a database for any entity you like i.e hospital ,library, school, movie rental, online store. This project involves more queries and database design. For example: For a e store database you can design tables for products, customers, orders, and payments.
+I Develop a Database for E-store.
 
 1. CREATE TABLE customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
