@@ -83,7 +83,7 @@ SELECT * FROM orders
 
 
 
-# Write SQL queries to handle customer orders.
+# SQL queries to handle customer orders.
 
 1. All customer orders, along with the customer and payment information:
 
