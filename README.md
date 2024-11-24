@@ -16,7 +16,7 @@ Develop a database for any entity you like i.e hospital ,library, school, movie 
   );
   
 INSERT INTO customers (first_name, last_name, email, phone_number, address, city, state, postal_code, country)
-  VALUES ('John', 'Doe', 'john.doe@example.com', '123-456-7890', '123 Main St', 'Springfield', 'IL', '62701', 'USA'),
+VALUES('John', 'Doe', 'john.doe@example.com', '123-456-7890', '123 Main St', 'Springfield', 'IL', '62701', 'USA'),
     ('Jane', 'Smith', 'jane.smith@example.com', '987-654-3210', '456 Oak Rd', 'Chicago', 'IL', '60601', 'USA'),
     ('Alice', 'Johnson', 'alice.johnson@example.com', '555-123-4567', '789 Pine Ln', 'Los Angeles', 'CA', '90001', 'USA'),
     ('Bob', 'Brown', 'bob.brown@example.com', '555-987-6543', '101 Maple Ave', 'New York', 'NY', '10001', 'USA'),
@@ -84,3 +84,42 @@ SELECT * FROM orders
 
 
 # Write SQL queries to handle customer orders.
+
+1. All customer orders, along with the customer and payment information:
+
+SELECT o.order_id, c.first_name, c.last_name, c.email, o.order_date, o.total_amount, o.order_status, p.payment_date, p.amount AS payment_amount, p.payment_method, p.payment_status FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id
+LEFT JOIN payments p ON o.order_id = p.order_id;
+
+2. All products purchased by each customer:
+
+SELECT o.order_id, c.first_name, c.last_name, p.product_name, p.price, op.quantity, (p.price * op.quantity) AS total_price FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id
+JOIN order_products op ON o.order_id = op.order_id
+JOIN products p ON op.product_id = p.product_id;
+
+3. Total sales for each product
+   
+SELECT p.product_name, SUM(op.quantity) AS total_units_sold, SUM(op.quantity * p.price) AS total_sales FROM order_products op
+JOIN products p ON op.product_id = p.product_id
+GROUP BY p.product_name;
+
+4. Update order status after payment:
+
+UPDATE orders
+SET order_status = 'Pending'
+WHERE customer_id =
+  AND EXISTS (
+    SELECT customer_id
+    FROM payments
+    WHERE order_id = orders.order_id
+    AND payment_status = 'Pending'
+  );
+
+5. To calculate total revenue generated
+
+SELECT SUM(total_amount) AS total_revenue
+FROM orders
+WHERE order_status = 'Delivered';
+
+
