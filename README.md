@@ -2,7 +2,7 @@
 # Problem Statement: 
 Develop a database for any entity you like i.e hospital ,library, school, movie rental, online store. This project involves more queries and database design. For example: For a e store database you can design tables for products, customers, orders, and payments.
 
-CREATE TABLE customers (
+1. CREATE TABLE customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
@@ -23,6 +23,26 @@ INSERT INTO customers (first_name, last_name, email, phone_number, address, city
     ('Charlie', 'Davis', 'charlie.davis@example.com', '555-555-5555', '202 Birch Blvd', 'Houston', 'TX', '77001', 'USA');
 
 SELECT * FROM Customers;
+
+2. CREATE TABLE products (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    category VARCHAR(100),
+    stock_quantity INT DEFAULT 0,
+    supplier VARCHAR(255)
+   );
+INSERT INTO products (product_id, product_name, description, price, category, stock_quantity, supplier)
+VALUES (1, 'Wireless Mouse', 'Ergonomic wireless mouse', 25.99, 'Electronics', 150, 'TechSupplies Inc.'),
+       (2, 'Bluetooth Speaker', 'Portable Bluetooth speaker', 49.99, 'Electronics', 80, 'SoundCo'),
+       (3, 'Stainless Steel Water Bottle', '500ml reusable bottle', 15.50, 'Home & Kitchen', 200, 'EcoGoods LLC'),
+       (4, 'LED Desk Lamp', 'Adjustable LED desk lamp', 35.00, 'Home & Office', 120, 'BrightLight Ltd.'),
+       (5, 'Yoga Mat', 'Non-slip yoga mat', 20.00, 'Fitness', 300, 'FitZone Retailers');
+
+SELECT * FROM products;
+
+3. 
 
 
 
